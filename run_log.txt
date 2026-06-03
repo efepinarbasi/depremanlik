@@ -1,0 +1,123 @@
+Launching lib\main.dart on sdk gphone64 x86 64 in debug mode...
+Running Gradle task 'assembleDebug'...                          
+D/FlutterJNI(10296): Beginning load of flutter...
+D/FlutterJNI(10296): flutter (null) was loaded normally!
+I/flutter (10296): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterGeolocator(10296): Attaching Geolocator to activity
+D/FlutterRenderer(10296): Width is zero. 0,0
+Running Gradle task 'assembleDebug'...                             14,7s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...        2.452ms
+D/FlutterJNI(10492): Beginning load of flutter...
+D/FlutterJNI(10492): flutter (null) was loaded normally!
+I/flutter (10492): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterGeolocator(10492): Attaching Geolocator to activity
+D/FlutterRenderer(10492): Width is zero. 0,0
+Syncing files to device sdk gphone64 x86 64...                     218ms
+
+Flutter run key commands.
+r Hot reload. 
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on sdk gphone64 x86 64 is available at: http://127.0.0.1:52890/CxujeZF1c28=/
+The Flutter DevTools debugger and profiler on sdk gphone64 x86 64 is available at: http://127.0.0.1:52890/CxujeZF1c28=/devtools/?uri=ws://127.0.0.1:52890/CxujeZF1c28=/ws
+D/FlutterGeolocator(10492): Creating service.
+D/FlutterGeolocator(10492): Binding to location service.
+I/Choreographer(10492): Skipped 78 frames!  The application may be doing too much work on its main thread.
+D/WindowOnBackDispatcher(10492): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@3528de3
+I/WindowExtensionsImpl(10492): Initializing Window Extensions, vendor API level=9, activity embedding enabled=true
+I/le.deprem_anlik(10492): Compiler allocated 5082KB to compile void android.view.ViewRootImpl.performTraversals()
+D/VRI[MainActivity](10492): WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+D/FlutterRenderer(10492): Width is zero. 0,0
+D/FlutterRenderer(10492): Width is zero. 0,0
+D/FlutterJNI(10492): Sending viewport metrics to the engine.
+D/FlutterGeolocator(10492): Geolocator foreground service connected
+D/FlutterGeolocator(10492): Initializing Geolocator services
+D/FlutterGeolocator(10492): Flutter engine connected. Connected engine count 1
+I/Choreographer(10492): Skipped 39 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(10492): Register WindowLayoutInfoListener on Context=com.example.deprem_anlik.MainActivity@2ba9cd4, of which baseContext=android.app.ContextImpl@b088958
+D/FlutterJNI(10492): Sending viewport metrics to the engine.
+D/WM-Processor(10492): Processor cancelling 6a65ee4b-3098-4089-bb45-2504035eec28
+D/WM-Processor(10492): WorkerWrapper could not be found for 6a65ee4b-3098-4089-bb45-2504035eec28
+D/WM-GreedyScheduler(10492): Cancelling work ID 6a65ee4b-3098-4089-bb45-2504035eec28
+D/WM-SystemJobScheduler(10492): Scheduling work ID 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655Job ID 20
+D/InsetsController(10492): hide(ime())
+I/ImeTracker(10492): com.example.deprem_anlik:7ee7aaaf: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+I/flutter (10492): [38;5;12m┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[0m
+I/flutter (10492): [38;5;12m│ 💡 [1m[3mflutter_map[0m[0m
+I/flutter (10492): [38;5;12m│ 💡 flutter_map wants to help keep map data available for everyone.[0m
+I/flutter (10492): [38;5;12m│ 💡 We use the OpenStreetMap public tile servers in our code examples & demo app,[0m
+I/flutter (10492): [38;5;12m│ 💡 but they are NOT free to use by everyone. Please review whether OSM's tile[0m
+I/flutter (10492): [38;5;12m│ 💡 servers are appropriate and the best choice for your app.[0m
+I/flutter (10492): [38;5;12m│ 💡 See:[0m
+I/flutter (10492): [38;5;12m│ 💡  * https://operations.osmfoundation.org/policies/tiles (OSM Tile Usage Policy)[0m
+I/flutter (10492): [38;5;12m│ 💡  * https://docs.fleaflet.dev/osm-warn for more information about this warning[0m
+I/flutter (10492): [38;5;12m└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[0m
+D/ProfileInstaller(10492): Installing profile for com.example.deprem_anlik
+W/le.deprem_anlik(10492): userfaultfd: MOVE ioctl seems unsupported: Connection timed out
+D/VRI[MainActivity](10492): visibilityChanged oldVisibility=true newVisibility=false
+D/ViewRootImpl(10492): Skipping stats log for color mode
+W/HWUI    (10492): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+D/InsetsController(10492): hide(ime())
+I/ImeTracker(10492): com.example.deprem_anlik:b9f045ae: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/WindowOnBackDispatcher(10492): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@edeb8f7
+D/WindowOnBackDispatcher(10492): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@3528de3
+D/VRI[MainActivity](10492): visibilityChanged oldVisibility=true newVisibility=false
+D/ViewRootImpl(10492): Skipping stats log for color mode
+D/InsetsController(10492): hide(ime())
+I/ImeTracker(10492): com.example.deprem_anlik:f6ce3326: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/VRI[MainActivity](10492): visibilityChanged oldVisibility=true newVisibility=false
+D/ViewRootImpl(10492): Skipping stats log for color mode
+D/InsetsController(10492): hide(ime())
+I/ImeTracker(10492): com.example.deprem_anlik:cef73374: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/VRI[MainActivity](10492): visibilityChanged oldVisibility=true newVisibility=false
+D/FlutterJNI(11229): Beginning load of flutter...
+D/FlutterJNI(11229): flutter (null) was loaded normally!
+I/flutter (11229): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterRenderer(11229): Width is zero. 0,0
+D/FlutterRenderer(11229): Width is zero. 0,0
+D/FlutterRenderer(11229): Width is zero. 0,0
+D/FlutterJNI(11229): Sending viewport metrics to the engine.
+D/FlutterJNI(11229): Sending viewport metrics to the engine.
+D/FlutterJNI(11229): Sending viewport metrics to the engine.
+D/WM-DelayedWorkTracker(10492): Scheduling work 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655
+D/WM-GreedyScheduler(10492): Starting tracking for 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655
+D/WM-SystemJobService(10492): onStartJob for WorkGenerationalId(workSpecId=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, generation=0)
+D/WM-Processor(10492): Processor: processing WorkGenerationalId(workSpecId=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, generation=0)
+D/WM-WorkerWrapper(10492): Starting work for dev.fluttercommunity.workmanager.BackgroundWorker
+D/WM-ConstraintTracker(10492): NetworkStateTracker24: initial state = NetworkState(isConnected=true, isValidated=true, isMetered=false, isNotRoaming=true)
+D/WM-NetworkStateTracker(10492): Registering network callback
+W/FlutterJNI(10492): FlutterJNI.loadLibrary called more than once
+D/FlutterJNI(10492): Beginning load of flutter...
+D/FlutterJNI(10492): flutter (null) was loaded normally!
+W/FlutterJNI(10492): FlutterJNI.prefetchDefaultFontManager called more than once
+D/FlutterGeolocator(10492): Geolocator foreground service connected
+D/FlutterGeolocator(10492): Initializing Geolocator services
+I/ResourceExtractor(10492): Found extracted resources res_timestamp-1-1774100318411
+D/FlutterGeolocator(10492): Flutter engine connected. Connected engine count 2
+W/FlutterJNI(10492): FlutterJNI.init called more than once
+D/WM-NetworkStateTracker(10492): Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&VALIDATED&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 83, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+I/flutter (10492): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/WM-GreedyScheduler(10492): Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, generation=0)
+D/WM-Processor(10492): Work WorkGenerationalId(workSpecId=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, generation=0) is already enqueued for processing
+D/FlutterGeolocator(10492): Flutter engine disconnected. Connected engine count 1
+D/FlutterGeolocator(10492): Disposing Geolocator services
+E/FlutterGeolocator(10492): Geolocator position updates stopped
+E/FlutterGeolocator(10492): There is still another flutter engine connected, not stopping location service
+I/WM-WorkerWrapper(10492): Worker result SUCCESS for Work [ id=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, tags={ dev.fluttercommunity.workmanager.BackgroundWorker } ]
+D/WM-Processor(10492): Processor 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655 executed; reschedule = false
+D/WM-GreedyScheduler(10492): Stopping tracking for WorkGenerationalId(workSpecId=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, generation=0)
+D/WM-SystemJobService(10492): 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655 executed on JobScheduler
+D/WM-GreedyScheduler(10492): Cancelling work ID 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655
+D/WM-SystemJobService(10492): onStopJob for WorkGenerationalId(workSpecId=6cafbb99-4f9f-4982-bbcf-4acf4ffd0655, generation=0)
+D/WM-SystemJobScheduler(10492): Scheduling work ID 6cafbb99-4f9f-4982-bbcf-4acf4ffd0655Job ID 21
+D/WM-NetworkStateTracker(10492): Unregistering network callback
+D/ViewRootImpl(10492): Skipping stats log for color mode
+W/HWUI    (10492): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+D/InsetsController(10492): hide(ime())
+I/ImeTracker(10492): com.example.deprem_anlik:3cd90a94: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+Lost connection to device.

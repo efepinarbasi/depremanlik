@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "ライブ",
+  "history": "履歴",
+  "news": "ニュース",
+  "location": "場所",
+  "radius": "半径",
+  "lastYear": "昨年",
+  "noData": "データが見つかりません。",
+  "error": "エラーが発生しました。",
+  "selectLocation": "場所を選択",
+  "distance": "距離",
+  "depth": "深さ",
+  "liveEarthquakes": "ライブ地震",
+  "newsCount": "{count} ニュース",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} レコード - 半径100km",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "{distance} km",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "過去の地震",
+  "earthquakeNews": "地震ニュース",
+  "areaSafe": "安全なエリア",
+  "seismicAlert": "地震注意報",
+  "noSeismicActivity": "あなたの周辺で大きな地震活動は検出されていません。",
+  "significantActivity": "近くで大きな地震活動が検出されました。",
+  "languageSettings": "言語設定",
+  "mapTab": "マップ",
+  "activityTab": "アクティビティ",
+  "savedTab": "保存済み",
+  "settingsTab": "設定",
+  "developmentInProgress": "開発中",
+  "guideTitle": "緊急サバイバルガイド",
+  "guide1Title": "1. ドロップ、カバー、ホールドオン",
+  "guide1Desc": "手と膝をついて身を低くします。腕で頭と首を覆います。揺れが収まるまで頑丈な家具につかまります。",
+  "guide2Title": "2. 室内に留まる",
+  "guide2Desc": "地震の最中に外に走らないでください。多くの負傷は人々が急いで外に出ようとする時に発生します。",
+  "guide3Title": "3. ガラスから離れる",
+  "guide3Desc": "窓、ガラス、外側のドアや壁、落ちてくる可能性のあるものから離れてください。",
+  "guide4Title": "4. 閉じ込められた場合",
+  "guide4Desc": "マッチで火をつけないでください。衣類で口を覆います。パイプや壁を叩いて救助隊に場所を知らせます。可能であればホイッスルを使用してください。",
+  "filterMagnitudeTitle": "通知フィルター",
+  "filterMagnitudeDesc": "表示する最小マグニチュード:",
+  "filterRadiusTitle": "対象範囲 (半径)",
+  "filterRadiusDesc": "通知する距離:",
+  "preferencesTitle": "設定",
+  "darkModeTitle": "ダークモード",
+  "soundTitle": "サウンド通知",
+  "emergencyContactsTitle": "緊急連絡先",
+  "emergencyContactsDesc": "緊急時に通知する電話番号",
+  "contactHint": "連絡先電話番号"
+}
