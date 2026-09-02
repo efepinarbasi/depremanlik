@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "En direct",
+  "history": "Historique",
+  "news": "Actualités",
+  "location": "Localisation",
+  "radius": "Rayon",
+  "lastYear": "L'année dernière",
+  "noData": "Aucune donnée trouvée.",
+  "error": "Une erreur s'est produite.",
+  "selectLocation": "Sélectionner l'emplacement",
+  "distance": "Distance",
+  "depth": "Profondeur",
+  "liveEarthquakes": "Tremblements de terre en direct",
+  "newsCount": "{count} actualités",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} enregistrements - rayon 100km",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "à {distance} km",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "Séismes passés",
+  "earthquakeNews": "Actualités sismiques",
+  "areaSafe": "Zone sûre",
+  "seismicAlert": "Alerte sismique",
+  "noSeismicActivity": "Aucune activité sismique significative détectée dans votre région.",
+  "significantActivity": "Activité sismique significative détectée à proximité.",
+  "languageSettings": "Paramètres de langue",
+  "mapTab": "Carte",
+  "activityTab": "Activité",
+  "savedTab": "Enregistré",
+  "settingsTab": "Paramètres",
+  "developmentInProgress": "En cours de développement",
+  "guideTitle": "Guide de survie",
+  "guide1Title": "1. SE BAISSER, SE COUVRIR, S'ACCROCHER",
+  "guide1Desc": "Mettez-vous à quatre pattes. Couvrez votre tête et votre cou avec vos bras. Accrochez-vous à un meuble solide jusqu'à ce que les secousses s'arrêtent.",
+  "guide2Title": "2. RESTER À L'INTÉRIEUR",
+  "guide2Desc": "Ne courez pas dehors pendant le tremblement de terre. La plupart des blessures surviennent lorsque les gens essaient de se précipiter dehors.",
+  "guide3Title": "3. RESTER LOIN DU VERRE",
+  "guide3Desc": "Éloignez-vous des fenêtres, du verre, des portes extérieures et des murs, et de tout ce qui pourrait tomber.",
+  "guide4Title": "4. SI PIÉGÉ",
+  "guide4Desc": "N'allumez pas d'allumette. Couvrez votre bouche avec des vêtements. Tapez sur un tuyau ou un mur pour que les secouristes puissent vous localiser.",
+  "filterMagnitudeTitle": "Filtre de Notification",
+  "filterMagnitudeDesc": "Afficher les séismes supérieurs à:",
+  "filterRadiusTitle": "Rayon de Couverture",
+  "filterRadiusDesc": "M'alerter dans un rayon de:",
+  "preferencesTitle": "Préférences",
+  "darkModeTitle": "Mode Sombre",
+  "soundTitle": "Notifications Sonores",
+  "emergencyContactsTitle": "Contacts d'Urgence",
+  "emergencyContactsDesc": "Numéros à notifier en cas de SOS",
+  "contactHint": "Téléphone de Contact"
+}

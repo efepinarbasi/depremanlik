@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "En vivo",
+  "history": "Historial",
+  "news": "Noticias",
+  "location": "Ubicación",
+  "radius": "Radio",
+  "lastYear": "El año pasado",
+  "noData": "No se encontraron datos.",
+  "error": "Ocurrió un error.",
+  "selectLocation": "Seleccionar ubicación",
+  "distance": "Distancia",
+  "depth": "Profundidad",
+  "liveEarthquakes": "Sismos en vivo",
+  "newsCount": "{count} noticias",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} registros - radio 100km",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "a {distance} km",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "Sismos pasados",
+  "earthquakeNews": "Noticias Sísmicas",
+  "areaSafe": "Área segura",
+  "seismicAlert": "Alerta sísmica",
+  "noSeismicActivity": "No se detectó actividad sísmica significativa en su vecindad.",
+  "significantActivity": "Actividad sísmica significativa detectada cerca.",
+  "languageSettings": "Configuraciones de idioma",
+  "mapTab": "Mapa",
+  "activityTab": "Actividad",
+  "savedTab": "Guardado",
+  "settingsTab": "Ajustes",
+  "developmentInProgress": "En desarrollo",
+  "guideTitle": "Guía de Supervivencia",
+  "guide1Title": "1. AGACHARSE, CUBRIRSE, SUJETARSE",
+  "guide1Desc": "Apóyese en las manos y rodillas. Cúbrase la cabeza y el cuello. Sujétese a un mueble resistente hasta que pase el temblor.",
+  "guide2Title": "2. QUEDARSE ADENTRO",
+  "guide2Desc": "No salga corriendo durante el terremoto. La mayoría de las lesiones ocurren por intentar salir precipitadamente.",
+  "guide3Title": "3. ALEJARSE DE LOS CRISTALES",
+  "guide3Desc": "Manténgase alejado de ventanas, cristales, puertas exteriores y muros, o elementos que puedan caer.",
+  "guide4Title": "4. SI QUEDA ATRAPADO",
+  "guide4Desc": "No encienda fósforos. Cúbrase la boca con ropa. Golpee un tubo o pared para que los rescatistas puedan encontrarlo.",
+  "filterMagnitudeTitle": "Filtro de Notificación",
+  "filterMagnitudeDesc": "Mostrar terremotos mayores a:",
+  "filterRadiusTitle": "Radio de Cobertura",
+  "filterRadiusDesc": "Alertarme de terremotos dentro de:",
+  "preferencesTitle": "Preferencias",
+  "darkModeTitle": "Modo Oscuro",
+  "soundTitle": "Notificaciones de Sonido",
+  "emergencyContactsTitle": "Contactos de Emergencia",
+  "emergencyContactsDesc": "Números para notificar durante un SOS",
+  "contactHint": "Teléfono de Contacto"
+}

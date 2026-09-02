@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "В эфире",
+  "history": "История",
+  "news": "Новости",
+  "location": "Локация",
+  "radius": "Радиус",
+  "lastYear": "Прошлый год",
+  "noData": "Данные не найдены.",
+  "error": "Произошла ошибка.",
+  "selectLocation": "Выберите место",
+  "distance": "Расстояние",
+  "depth": "Глубина",
+  "liveEarthquakes": "Землетрясения сейчас",
+  "newsCount": "{count} новости",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} записей - радиус 100км",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "{distance} км",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "Прошлые землетрясения",
+  "earthquakeNews": "Новости о землетрясениях",
+  "areaSafe": "Безопасная зона",
+  "seismicAlert": "Сейсмическая тревога",
+  "noSeismicActivity": "В вашем районе не обнаружено значительной сейсмической активности.",
+  "significantActivity": "Поблизости обнаружена значительная сейсмическая активность.",
+  "languageSettings": "Настройки языка",
+  "mapTab": "Карта",
+  "activityTab": "Трекер",
+  "savedTab": "Сохраненные",
+  "settingsTab": "Настройки",
+  "developmentInProgress": "В разработке",
+  "guideTitle": "Руководство по выживанию",
+  "guide1Title": "1. УПАСТЬ, УКРЫТЬСЯ, ДЕРЖАТЬСЯ",
+  "guide1Desc": "Опуститесь на четвереньки. Прикройте голову и шею руками. Держитесь за прочную мебель, пока не прекратится тряска.",
+  "guide2Title": "2. ОСТАВАТЬСЯ ВНУТРИ",
+  "guide2Desc": "Не выбегайте на улицу во время землетрясения. Большинство травм происходит из-за паники.",
+  "guide3Title": "3. ДЕРЖАТЬСЯ ПОДАЛЬШЕ ОТ СТЕКОЛ",
+  "guide3Desc": "Держитесь подальше от окон, стекла, наружных дверей и стен, а также всего, что может упасть.",
+  "guide4Title": "4. ЕСЛИ ВЫ ЗАБЛОКИРОВАНЫ",
+  "guide4Desc": "Не зажигайте спички. Прикройте рот одеждой. Стучите по трубе или стене, чтобы спасатели могли вас найти.",
+  "filterMagnitudeTitle": "Фильтр Уведомлений",
+  "filterMagnitudeDesc": "Показывать землетрясения от:",
+  "filterRadiusTitle": "Радиус Охвата",
+  "filterRadiusDesc": "Уведомлять в радиусе:",
+  "preferencesTitle": "Настройки",
+  "darkModeTitle": "Темный Режим",
+  "soundTitle": "Звуковые Уведомления",
+  "emergencyContactsTitle": "Экстренные Контакты",
+  "emergencyContactsDesc": "Номера для уведомления при SOS",
+  "contactHint": "Телефон Контакта"
+}
