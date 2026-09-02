@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "Live",
+  "history": "History",
+  "news": "News",
+  "location": "Location",
+  "radius": "Radius",
+  "lastYear": "Last Year",
+  "noData": "No data found.",
+  "error": "An error occurred.",
+  "selectLocation": "Select Location",
+  "distance": "Distance",
+  "depth": "Depth",
+  "liveEarthquakes": "Live Earthquakes",
+  "newsCount": "{count} news",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} records - 100km radius",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "{distance} km away",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "Past Earthquakes",
+  "earthquakeNews": "Earthquake News",
+  "areaSafe": "Area Safe",
+  "seismicAlert": "Seismic Alert",
+  "noSeismicActivity": "No significant seismic activity detected in your vicinity.",
+  "significantActivity": "Significant seismic activity detected nearby.",
+  "languageSettings": "Language Settings",
+  "mapTab": "Map",
+  "activityTab": "Activity",
+  "savedTab": "Saved",
+  "settingsTab": "Settings",
+  "developmentInProgress": "Development in progress",
+  "guideTitle": "Emergency Survival Guide",
+  "guide1Title": "1. DROP, COVER, HOLD ON",
+  "guide1Desc": "Drop to your hands and knees. Cover your head and neck with your arms. Hold on to any sturdy furniture until the shaking stops.",
+  "guide2Title": "2. STAY INDOORS",
+  "guide2Desc": "Do not run outside during the earthquake. Most injuries occur when people try to rush out.",
+  "guide3Title": "3. STAY AWAY FROM GLASS",
+  "guide3Desc": "Keep away from windows, glass, outside doors and walls, and anything that could fall.",
+  "guide4Title": "4. IF TRAPPED",
+  "guide4Desc": "Do not light a match. Cover your mouth with clothing. Tap on a pipe or wall so rescuers can locate you. Use a whistle if available.",
+  "filterMagnitudeTitle": "Notification Filter",
+  "filterMagnitudeDesc": "Show earthquakes above magnitude:",
+  "filterRadiusTitle": "Coverage Radius",
+  "filterRadiusDesc": "Alert me for earthquakes within:",
+  "preferencesTitle": "Preferences",
+  "darkModeTitle": "Dark Mode (Lunar Theme)",
+  "soundTitle": "Sound Notifications",
+  "emergencyContactsTitle": "Emergency Contacts",
+  "emergencyContactsDesc": "Phone numbers to notify during an SOS event",
+  "contactHint": "Contact Phone"
+}

@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "Live",
+  "history": "Verlauf",
+  "news": "Nachrichten",
+  "location": "Ort",
+  "radius": "Radius",
+  "lastYear": "Letztes Jahr",
+  "noData": "Keine Daten gefunden.",
+  "error": "Ein Fehler ist aufgetreten.",
+  "selectLocation": "Ort auswählen",
+  "distance": "Entfernung",
+  "depth": "Tiefe",
+  "liveEarthquakes": "Live Erdbeben",
+  "newsCount": "{count} Nachrichten",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} Aufzeichnungen - 100km Radius",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "{distance} km entfernt",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "Vergangene Erdbeben",
+  "earthquakeNews": "Erdbeben-Nachrichten",
+  "areaSafe": "Sicheres Gebiet",
+  "seismicAlert": "Seismische Warnung",
+  "noSeismicActivity": "Keine signifikante seismische Aktivität in Ihrer Nähe entdeckt.",
+  "significantActivity": "Signifikante seismische Aktivität in der Nähe entdeckt.",
+  "languageSettings": "Spracheinstellungen",
+  "mapTab": "Karte",
+  "activityTab": "Aktivität",
+  "savedTab": "Gespeichert",
+  "settingsTab": "Einstellungen",
+  "developmentInProgress": "In Entwicklung",
+  "guideTitle": "Überlebensleitfaden",
+  "guide1Title": "1. DUCKEN, SCHÜTZEN, FESTHALTEN",
+  "guide1Desc": "Gehen Sie auf Hände und Knie. Schützen Sie Kopf und Nacken mit Ihren Armen. Halten Sie sich an einem stabilen Möbelstück fest, bis das Beben aufhört.",
+  "guide2Title": "2. DRINNEN BLEIBEN",
+  "guide2Desc": "Rennen Sie während des Erdbebens nicht nach draußen. Die meisten Verletzungen passieren, wenn Menschen panisch fliehen.",
+  "guide3Title": "3. FERN VON GLAS BLEIBEN",
+  "guide3Desc": "Bleiben Sie von Fenstern, Glas, Außentüren und -wänden sowie allem, was fallen könnte, fern.",
+  "guide4Title": "4. WENN EINGESPERRT",
+  "guide4Desc": "Zünden Sie kein Streichholz an. Bedecken Sie Ihren Mund mit Kleidung. Klopfen Sie an eine Leitung oder Wand, um Helfer zu alarmieren.",
+  "filterMagnitudeTitle": "Benachrichtigungsfilter",
+  "filterMagnitudeDesc": "Zeige Erdbeben ab Magnitude:",
+  "filterRadiusTitle": "Erfassungsradius",
+  "filterRadiusDesc": "Benachrichtigen bei Erdbeben innerhalb:",
+  "preferencesTitle": "Präferenzen",
+  "darkModeTitle": "Dunkelmodus",
+  "soundTitle": "Tonbenachrichtigungen",
+  "emergencyContactsTitle": "Notfallkontakte",
+  "emergencyContactsDesc": "Telefonnummern für SOS-Ereignisse",
+  "contactHint": "Kontakt Telefon"
+}

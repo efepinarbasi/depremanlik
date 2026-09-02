@@ -1,0 +1,70 @@
+{
+  "appTitle": "SeismoAlert",
+  "live": "Canlı",
+  "history": "Geçmiş",
+  "news": "Haberler",
+  "location": "Konum",
+  "radius": "Çap",
+  "lastYear": "Son 1 Yıl",
+  "noData": "Veri bulunamadı.",
+  "error": "Bir hata oluştu.",
+  "selectLocation": "Konum Seç",
+  "distance": "Mesafe",
+  "depth": "Derinlik",
+  "liveEarthquakes": "Canlı Depremler",
+  "newsCount": "{count} haber",
+  "@newsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "records": "{count} kayıt - 100km çap",
+  "@records": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kmAway": "{distance} km uzakta",
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "pastEarthquakes": "Geçmiş Depremler",
+  "earthquakeNews": "Deprem Haberleri",
+  "areaSafe": "Bölge Güvenli",
+  "seismicAlert": "Sismik Uyarı",
+  "noSeismicActivity": "Çevrenizde önemli bir sismik aktivite algılanmadı.",
+  "significantActivity": "Yakınınızda önemli sismik aktivite algılandı.",
+  "languageSettings": "Dil Ayarları",
+  "mapTab": "Harita",
+  "activityTab": "Aktivite",
+  "savedTab": "Kaydedilenler",
+  "settingsTab": "Ayarlar",
+  "developmentInProgress": "Geliştirme aşamasında",
+  "guideTitle": "Acil Durum Hayatta Kalma Rehberi",
+  "guide1Title": "1. ÇÖK, KAPAN, TUTUN",
+  "guide1Desc": "Ellerinizin ve dizlerinizin üzerine çökün. Başınızı ve boynunuzu kollarınızla koruyun. Sarsıntı geçene kadar sağlam bir mobilyaya tutunun.",
+  "guide2Title": "2. İÇERİDE KALIN",
+  "guide2Desc": "Deprem sırasında dışarı koşmayın. Yaralanmaların çoğu insanlar panikle dışarı çıkmaya çalışırken olur.",
+  "guide3Title": "3. CAMLARDAN UZAK DURUN",
+  "guide3Desc": "Pencerelerden, camlardan, dış kapı ve duvarlardan ile düşebilecek her şeyden uzak durun.",
+  "guide4Title": "4. ENKAZ ALTINDAYSANIZ",
+  "guide4Desc": "Kibrit yakmayın. Ağzınızı bir giysiyle kapatın. Kurtarma ekiplerine yerinizi belli etmek için borulara veya duvara vurun. Varsa düdük kullanın.",
+  "filterMagnitudeTitle": "Bildirim Filtresi",
+  "filterMagnitudeDesc": "Şu şiddet ve üzeri depremleri göster:",
+  "filterRadiusTitle": "Tarama Yarıçapı",
+  "filterRadiusDesc": "Bana şu mesafedeki depremleri bildir:",
+  "preferencesTitle": "Tercihler",
+  "darkModeTitle": "Karanlık Mod (Lunar Tema)",
+  "soundTitle": "Sesli Bildirimler",
+  "emergencyContactsTitle": "Acil Durum Kişileri",
+  "emergencyContactsDesc": "Acil durumda SMS gönderilecek numaralar",
+  "contactHint": "Kişi Numarası"
+}

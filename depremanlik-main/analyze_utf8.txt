@@ -1,0 +1,46 @@
+﻿Resolving dependencies...
+Downloading packages...
+  cupertino_icons 1.0.8 (1.0.9 available)
+  geocoding_android 4.0.1 (5.0.1 available)
+  geocoding_platform_interface 3.2.0 (5.0.0 available)
+  logger 2.6.2 (2.7.0 available)
+  meta 1.17.0 (1.18.2 available)
+  mgrs_dart 2.0.0 (3.0.0 available)
+  native_toolchain_c 0.17.5 (0.17.6 available)
+  path_provider_android 2.2.22 (2.2.23 available)
+  proj4dart 2.1.0 (3.0.0 available)
+  shared_preferences_android 2.4.21 (2.4.23 available)
+  test_api 0.7.10 (0.7.11 available)
+  unicode 0.3.1 (1.1.9 available)
+  url_launcher_android 6.3.28 (6.3.29 available)
+  vector_math 2.2.0 (2.3.0 available)
+  win32 5.15.0 (6.0.0 available)
+Got dependencies!
+15 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing deprem_anlik_app...                                   
+
+warning - Unused import: 'dart:convert' - lib\models\news.dart:1:8 - unused_import
+   info - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' - lib\screens\home_screen.dart:3:8 - unnecessary_import
+   info - Don't use 'BuildContext's across async gaps - lib\screens\home_screen.dart:242:33 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\home_screen.dart:336:39 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\home_screen.dart:340:46 - use_build_context_synchronously
+warning - The declaration '_buildListSection' isn't referenced - lib\screens\home_screen.dart:722:10 - unused_element
+   info - Use interpolation to compose strings and values - lib\screens\home_screen.dart:854:39 - prefer_interpolation_to_compose_strings
+warning - The declaration '_buildNewsSection' isn't referenced - lib\screens\home_screen.dart:879:10 - unused_element
+   info - Use interpolation to compose strings and values - lib\screens\home_screen.dart:1111:37 - prefer_interpolation_to_compose_strings
+  error - The named parameter 'settings' is required, but there's no corresponding argument - lib\services\notification_service.dart:54:45 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 1 found - lib\services\notification_service.dart:55:9 - extra_positional_arguments_could_be_named
+  error - Undefined name 'defaultTargetPlatform' - lib\services\notification_service.dart:64:13 - undefined_identifier
+  error - Undefined name 'defaultTargetPlatform' - lib\services\notification_service.dart:69:20 - undefined_identifier
+   info - 'isInDebugMode' is deprecated and shouldn't be used. Use WorkmanagerDebug handlers instead. This parameter has no effect - lib\services\notification_service.dart:84:9 - deprecated_member_use
+   info - Unnecessary 'const' keyword - lib\services\notification_service.dart:116:14 - unnecessary_const
+  error - The named parameter 'id' is required, but there's no corresponding argument - lib\services\notification_service.dart:134:43 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 4 found - lib\services\notification_service.dart:135:7 - extra_positional_arguments_could_be_named
+   info - 'desiredAccuracy' is deprecated and shouldn't be used. use settings parameter with AndroidSettings, AppleSettings, WebSettings, or LocationSettings - lib\utils\location_helper.dart:43:9 - deprecated_member_use
+   info - Don't invoke 'print' in production code - lib\utils\location_helper.dart:80:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\utils\location_helper.dart:97:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\utils\location_helper.dart:119:7 - avoid_print
+warning - Unused import: 'package:flutter/material.dart' - test\widget_test.dart:1:8 - unused_import
+   info - Don't invoke 'print' in production code - test_xml.dart:9:5 - avoid_print
+
