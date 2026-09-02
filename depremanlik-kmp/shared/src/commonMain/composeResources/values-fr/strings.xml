@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">SeismoAlert</string>
+    <string name="live">En direct</string>
+    <string name="history">Historique</string>
+    <string name="news">Actualités</string>
+    <string name="location">Emplacement</string>
+    <string name="no_data">Aucune donnée trouvée.</string>
+    <string name="depth">Profondeur</string>
+    <string name="distance">Distance</string>
+    <string name="live_earthquakes">Séismes en direct</string>
+    <string name="past_earthquakes">Séismes passés</string>
+    <string name="earthquake_news">Actualités sismiques</string>
+    <string name="area_safe">Zone sûre</string>
+    <string name="seismic_alert">Alerte sismique</string>
+    <string name="map_tab">Carte</string>
+    <string name="activity_tab">Activité</string>
+    <string name="guide_tab">Guide</string>
+    <string name="settings_tab">Paramètres</string>
+    <string name="emergency_tools">Outils d\'urgence</string>
+    <string name="i_am_safe">Je suis en sécurité</string>
+    <string name="earthquake_simulator">Simulateur de séisme</string>
+    <string name="emergency_kit">Kit d\'urgence</string>
+</resources>

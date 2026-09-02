@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">SeismoAlert</string>
+    <string name="live">ライブ</string>
+    <string name="history">履歴</string>
+    <string name="news">ニュース</string>
+    <string name="location">位置</string>
+    <string name="no_data">データが見つかりません。</string>
+    <string name="depth">深さ</string>
+    <string name="distance">距離</string>
+    <string name="live_earthquakes">リアルタイム地震</string>
+    <string name="past_earthquakes">過去の地震</string>
+    <string name="earthquake_news">地震ニュース</string>
+    <string name="area_safe">地域は安全</string>
+    <string name="seismic_alert">地震警報</string>
+    <string name="map_tab">地図</string>
+    <string name="activity_tab">活動</string>
+    <string name="guide_tab">ガイド</string>
+    <string name="settings_tab">設定</string>
+    <string name="emergency_tools">緊急ツール</string>
+    <string name="i_am_safe">安全です</string>
+    <string name="earthquake_simulator">地震シミュレーター</string>
+    <string name="emergency_kit">非常用キット</string>
+</resources>

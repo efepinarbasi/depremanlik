@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">SeismoAlert</string>
+    <string name="live">Онлайн</string>
+    <string name="history">История</string>
+    <string name="news">Новости</string>
+    <string name="location">Местоположение</string>
+    <string name="no_data">Данные не найдены.</string>
+    <string name="depth">Глубина</string>
+    <string name="distance">Расстояние</string>
+    <string name="live_earthquakes">Землетрясения онлайн</string>
+    <string name="past_earthquakes">Прошлые землетрясения</string>
+    <string name="earthquake_news">Новости о землетрясениях</string>
+    <string name="area_safe">Зона безопасна</string>
+    <string name="seismic_alert">Сейсмическая тревога</string>
+    <string name="map_tab">Карта</string>
+    <string name="activity_tab">Активность</string>
+    <string name="guide_tab">Справочник</string>
+    <string name="settings_tab">Настройки</string>
+    <string name="emergency_tools">Инструменты экстренной помощи</string>
+    <string name="i_am_safe">Я в безопасности</string>
+    <string name="earthquake_simulator">Симулятор землетрясения</string>
+    <string name="emergency_kit">Аварийный набор</string>
+</resources>
