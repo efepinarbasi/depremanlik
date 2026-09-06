@@ -15,12 +15,14 @@ import '../models/news.dart';
 import '../providers/locale_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/native_ad_card.dart';
-import 'home_screen.dart';
+
 
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fast_contacts/fast_contacts.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+enum DataType { live, history, news }
 
 class StitchHomeScreen extends StatefulWidget {
   const StitchHomeScreen({super.key});
@@ -257,9 +259,9 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
   static const Color _outlineVariant = Color(0xFF5E3F3C);
 
   Color _getMagnitudeColor(double mag) {
-    if (mag < 4.0) return _tertiary;          // Neon Green
-    if (mag < 5.0) return _secondaryContainer; // Electric Orange  
-    return _primaryContainer;                  // Neon Red
+    if (mag < 4.0) return const Color(0xFF43A047);
+    if (mag < 5.0) return const Color(0xFFF57C00);
+    return const Color(0xFFD32F2F);
   }
 
   @override
@@ -284,7 +286,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         title: Text('SeismoAlert', style: TextStyle(fontWeight: FontWeight.w900, color: _onSurface, letterSpacing: -0.5, fontFamily: 'Inter')),
         centerTitle: false,
         backgroundColor: _bgColor,
-        elevation: 0,
+        elevation: 0, scrolledUnderElevation: 0,
         actions: [
           if (_isLoading) 
              Padding(padding: const EdgeInsets.all(16), child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: _primaryContainer))),
@@ -437,9 +439,9 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: cardColor,
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.05), blurRadius: 40, spreadRadius: -10, offset: const Offset(0, 8))],
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: cardColor == Colors.transparent ? Colors.transparent : (isDark ? Colors.white12 : Colors.black12), width: 1),
           ),
           child: Column(
             children: [
@@ -450,7 +452,6 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                   shape: BoxShape.circle,
                   color: _getMagnitudeColor(_simulatorMagnitude).withValues(alpha: 0.15),
                   border: Border.all(color: _getMagnitudeColor(_simulatorMagnitude), width: 3),
-                  boxShadow: [BoxShadow(color: _getMagnitudeColor(_simulatorMagnitude).withValues(alpha: 0.3), blurRadius: 20, spreadRadius: 2)],
                 ),
                 child: Center(
                   child: Text(
@@ -495,7 +496,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: cardColor,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
@@ -525,7 +526,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         ..._kitItems.entries.map((entry) => Container(
           margin: const EdgeInsets.only(bottom: 6),
           decoration: BoxDecoration(
-            color: cardColor,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
           ),
           child: CheckboxListTile(
@@ -562,10 +563,9 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       onTap: () => _showToolPage(label.replaceAll('\n', ' '), icon, accentColor),
       child: Container(
         decoration: BoxDecoration(
-          color: cardColor,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: accentColor.withValues(alpha: 0.2)),
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.04), blurRadius: 20, spreadRadius: -5)],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -841,7 +841,6 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(color: color.withValues(alpha: 0.4), blurRadius: 15, offset: const Offset(0, 8))],
         ),
         child: Column(
           children: [
@@ -1034,7 +1033,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         const SizedBox(height: 12),
         ..._savedLocations.map((loc) => Container(
           margin: const EdgeInsets.only(bottom: 8),
-          decoration: BoxDecoration(color: cardColor, borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(12)),
           child: ListTile(
             leading: Icon(Icons.home, color: isDark ? Colors.white : Colors.black),
             title: Text(loc.name.toUpperCase(), style: TextStyle(color: textColor, fontWeight: FontWeight.bold)),
@@ -1049,7 +1048,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         Text(l.languageSettings ?? "Language Settings", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor)),
         const SizedBox(height: 16),
         Container(
-          decoration: BoxDecoration(color: cardColor, borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(16)),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: ExpansionTile(
@@ -1173,9 +1172,9 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           margin: const EdgeInsets.all(16),
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: isAreaSafe ? cardColor : _primaryContainer.withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 40, spreadRadius: -10, offset: const Offset(0, 10))]
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: cardColor == Colors.transparent ? Colors.transparent : (isDark ? Colors.white12 : Colors.black12), width: 1)
           ),
           child: Row(
             children: [
@@ -1280,11 +1279,11 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
               markers: [
                 Marker(
                   point: _center,
-                  width: 50, height: 50,
+                  width: 44, height: 44,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                       Container(width: 50, height: 50, decoration: BoxDecoration(color: Colors.blue.withValues(alpha: 0.2), shape: BoxShape.circle)),
+                       Container(width: 44, height: 44, decoration: BoxDecoration(color: Colors.blue.withValues(alpha: 0.2), shape: BoxShape.circle)),
                        Container(width: 20, height: 20, decoration: BoxDecoration(color: Colors.blue, shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 3))),
                     ]
                   ),
@@ -1394,13 +1393,6 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                           decoration: BoxDecoration(
                             color: isSelected ? const Color(0xFFBA1A1A) : (isDark ? const Color(0xFF25292A) : Colors.white),
                             borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                color: isSelected ? const Color(0xFFBA1A1A).withValues(alpha: 0.4) : Colors.black.withValues(alpha: 0.1),
-                                blurRadius: isSelected ? 12 : 6,
-                                offset: const Offset(0, 4)
-                              )
-                            ],
                             border: Border.all(color: isSelected ? Colors.transparent : const Color(0xFFE7E8E9).withValues(alpha: isDark ? 0.1 : 1.0))
                           ),
                           child: Row(
@@ -1465,16 +1457,16 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     final shadow = isDark ? Colors.black45 : Colors.black12;
     return InkWell(
       onTap: () => _onCategoryChanged(type),
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(12),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOutCubic,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           color: bg,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(color: isSelected ? Colors.transparent : (isDark ? Colors.transparent : const Color(0xFFE7E8E9))),
-          boxShadow: isSelected ? [] : [BoxShadow(color: shadow, blurRadius: 10, offset: const Offset(0, 4))],
+          boxShadow: [BoxShadow(color: shadow, blurRadius: 10, offset: const Offset(0, 4))],
         ),
         child: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 300),
@@ -1551,7 +1543,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     );
   }
 
-  List<Widget> _buildEarthquakeListItems(AppLocalizations l, bool isDark, Color cardColor) {
+    List<Widget> _buildEarthquakeListItems(AppLocalizations l, bool isDark, Color cardColor) {
     if (_earthquakes.isEmpty && !_isLoading) {
       return [Padding(padding: const EdgeInsets.all(32), child: Center(child: Text(l.noData, style: TextStyle(color: isDark ? Colors.white70 : const Color(0xFF45474D)))))];
     }
@@ -1561,120 +1553,94 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       final color = _getMagnitudeColor(eq.mag);
       
       items.add(
-        GestureDetector(
-          key: ValueKey('eq_${eq.id}_$i'),
+        InkWell(
+          key: ValueKey('eq_$eq.id_$i'),
           onTap: () => _showEarthquakeDetails(eq, l, isDark),
           child: Container(
-            margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 30, spreadRadius: -8, offset: const Offset(0, 6))]
-            ),
-            child: Column(
+            color: Colors.transparent,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 50, height: 50,
-                      decoration: BoxDecoration(color: color.withValues(alpha: 0.15), shape: BoxShape.circle, border: Border.all(color: color.withValues(alpha: 0.4), width: 2)),
-                      child: Center(child: Text(eq.mag.toStringAsFixed(1), style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 18))),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15, color: _onSurface), maxLines: 2, overflow: TextOverflow.ellipsis),
-                          const SizedBox(height: 6),
-                          Text("${DateFormat('dd.MM.yyyy HH:mm').format(eq.date)} • ${(eq.distance / 1000).toStringAsFixed(1)} km", style: TextStyle(color: _onSurfaceVariant, fontSize: 13)),
-                        ],
-                      ),
-                    ),
-                  ],
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Text(eq.mag.toStringAsFixed(1), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                  ),
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("${eq.depth.toStringAsFixed(1)} km ${l.depth}", style: TextStyle(color: _outline, fontSize: 12)),
-                    TextButton.icon(
-                      onPressed: () => _showEarthquakeDetails(eq, l, isDark),
-                      icon: const Icon(Icons.open_in_new, size: 16),
-                      label: Text(l.localeName == 'tr' ? 'Detay' : 'Detail'),
-                      style: TextButton.styleFrom(iconColor: _primaryContainer, foregroundColor: _primaryContainer),
-                    ),
-                  ],
-                )
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: isDark ? Colors.white : Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Icon(Icons.access_time, size: 12, color: isDark ? Colors.white60 : Colors.black54),
+                          const SizedBox(width: 4),
+                          Text("  ·   km", style: TextStyle(color: isDark ? Colors.white60 : Colors.black54, fontSize: 13)),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right, color: isDark ? Colors.white24 : Colors.black26),
               ],
             ),
           ),
         ),
       );
       
-      // Her depremden sonra reklam ekle
+      items.add(Divider(height: 1, indent: 76, color: isDark ? Colors.white10 : Colors.black12));
       items.add(NativeAdCard(key: ValueKey('ad_eq_$i')));
     }
     return items;
   }
 
-  List<Widget> _buildNewsListItems(AppLocalizations l, bool isDark, Color cardColor) {
+    List<Widget> _buildNewsListItems(AppLocalizations l, bool isDark, Color cardColor) {
     if (_newsList.isEmpty && !_isLoading) {
-      return [Padding(padding: const EdgeInsets.all(32), child: Center(child: Text(l.noData, style: TextStyle(color: _onSurfaceVariant))))];
+      return [Padding(padding: const EdgeInsets.all(32), child: Center(child: Text(l.noData, style: TextStyle(color: isDark ? Colors.white70 : Colors.black54))))];
     }
-
     final List<Widget> items = [];
-
     for (int i = 0; i < _newsList.length; i++) {
       final news = _newsList[i];
-
-      // --- Haber Kartı ---
       items.add(
-        GestureDetector(
+        InkWell(
           key: ValueKey('news_$i'),
           onTap: () async {
             final uri = Uri.parse(news.link);
             if (await canLaunchUrl(uri)) await launchUrl(uri, mode: LaunchMode.externalApplication);
           },
           child: Container(
-            margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 30, spreadRadius: -8, offset: const Offset(0, 6))]
-            ),
+            color: Colors.transparent,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(color: _secondaryContainer.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
-                      child: Text(news.source == 'Haber' ? l.news : (news.source ?? l.news), style: TextStyle(color: _secondaryContainer, fontSize: 11, fontWeight: FontWeight.bold)),
-                    ),
+                    Text(news.source == 'Haber' ? l.news : (news.source ?? l.news), style: TextStyle(color: isDark ? const Color(0xFFF57C00) : const Color(0xFFE65100), fontSize: 12, fontWeight: FontWeight.bold)),
                     const Spacer(),
-                    Icon(Icons.open_in_new, color: _outline, size: 16),
+                    Text(DateFormat('dd MMM').format(news.pubDate), style: TextStyle(color: isDark ? Colors.white54 : Colors.black45, fontSize: 12)),
                   ],
                 ),
-                const SizedBox(height: 10),
-                Text(news.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: _onSurface)),
                 const SizedBox(height: 8),
-                Text(news.description.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ''), style: TextStyle(color: _onSurfaceVariant, fontSize: 13, height: 1.4), maxLines: 3, overflow: TextOverflow.ellipsis),
-                const SizedBox(height: 8),
-                Text(DateFormat('dd MMM yyyy').format(news.pubDate), style: TextStyle(color: _outline, fontSize: 12)),
+                Text(news.title, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: isDark ? Colors.white : Colors.black), maxLines: 2, overflow: TextOverflow.ellipsis),
+                const SizedBox(height: 6),
+                Text(news.description.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ''), style: TextStyle(color: isDark ? Colors.white70 : Colors.black87, fontSize: 14, height: 1.3), maxLines: 2, overflow: TextOverflow.ellipsis),
               ],
             ),
           ),
         ),
       );
-
-      // --- Native Reklam Kartı ---
+      items.add(Divider(height: 1, indent: 20, endIndent: 20, color: isDark ? Colors.white10 : Colors.black12));
       items.add(NativeAdCard(key: ValueKey('ad_$i')));
     }
-
     return items;
   }
 }

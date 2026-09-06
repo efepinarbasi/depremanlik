@@ -81,7 +81,6 @@ class NotificationService {
       // 2. WorkManager Init
       await Workmanager().initialize(
         callbackDispatcher,
-        isInDebugMode: false, // Prod için false kalmalı
       );
 
       // Mevcut arkplan sürelerini iptal edip yeniden kuralım.

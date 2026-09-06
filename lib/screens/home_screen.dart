@@ -242,7 +242,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 onLongPress: () async {
                   await LocationHelper.deleteLocation(loc.name);
                   _loadSavedLocations();
-                  Navigator.pop(ctx);
+                  if (ctx.mounted) {
+                    Navigator.pop(ctx);
+                  }
                 },
                 onTap: () {
                   Navigator.pop(ctx);
@@ -336,13 +338,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                         
                         _initializeLocationAndData();
-                        Navigator.pop(ctx);
+                        if (ctx.mounted) {
+                          Navigator.pop(ctx);
+                        }
                       } else {
                         // Bulunamadı hatası
                         setDialogState(() => isSearching = false);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Konum bulunamadı, daha belirgin bir adres yazın."))
-                        );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Konum bulunamadı, daha belirgin bir adres yazın."))
+                          );
+                        }
                       }
                     } catch (e) {
                       setDialogState(() => isSearching = false);
@@ -974,3 +980,5 @@ class _HomeScreenState extends State<HomeScreen> {
     return items;
   }
 }
+
+

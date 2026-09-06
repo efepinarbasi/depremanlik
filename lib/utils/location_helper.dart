@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import '../models/earthquake.dart';
 import '../models/saved_location.dart';
 
@@ -40,7 +41,7 @@ class LocationHelper {
     // Konumu al (Yüksek hassasiyet) 5 saniye zaman aşımı ile (Emülatör donmasını önler)
     try {
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
       ).timeout(const Duration(seconds: 5), onTimeout: () {
         throw TimeoutException("Konum bulma zaman aşımına uğradı");
       });
@@ -77,7 +78,7 @@ class LocationHelper {
         return LatLng(locations.first.latitude, locations.first.longitude);
       }
     } catch (e) {
-      print("Geocoding hatası: \$e");
+      debugPrint("Geocoding hatası: \$e");
     }
     return null;
   }
@@ -94,7 +95,7 @@ class LocationHelper {
       
       return locationsJson.map((jsonStr) => SavedLocation.fromJson(jsonStr)).toList();
     } catch (e) {
-      print("Konumları okurken hata: \$e");
+      debugPrint("Konumları okurken hata: \$e");
       return [];
     }
   }
@@ -116,7 +117,7 @@ class LocationHelper {
       final List<String> jsonList = locations.map((l) => l.toJson()).toList();
       return await prefs.setStringList('saved_locations', jsonList);
     } catch (e) {
-      print("Konum kaydederken hata: \$e");
+      debugPrint("Konum kaydederken hata: \$e");
       return false;
     }
   }

@@ -257,9 +257,9 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
   static const Color _outlineVariant = Color(0xFF5E3F3C);
 
   Color _getMagnitudeColor(double mag) {
-    if (mag < 4.0) return _tertiary;          // Neon Green
-    if (mag < 5.0) return _secondaryContainer; // Electric Orange  
-    return _primaryContainer;                  // Neon Red
+    if (mag < 4.0) return const Color(0xFFD97706); // Muted Amber
+    if (mag < 5.0) return const Color(0xFFE2725B); // Soft Terracotta
+    return const Color(0xFF93000A); // Deep Crimson
   }
 
   @override
@@ -1557,68 +1557,68 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     }
     final List<Widget> items = [];
     for (int i = 0; i < _earthquakes.length; i++) {
-      final eq = _earthquakes[i];
-      final color = _getMagnitudeColor(eq.mag);
-      
-      items.add(
-        GestureDetector(
-          key: ValueKey('eq_${eq.id}_$i'),
-          onTap: () => _showEarthquakeDetails(eq, l, isDark),
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 30, spreadRadius: -8, offset: const Offset(0, 6))]
-            ),
-            child: Column(
-              children: [
-                Row(
+        final eq = _earthquakes[i];
+        final color = _getMagnitudeColor(eq.mag);
+        
+        items.add(
+          GestureDetector(
+            key: ValueKey('eq__'),
+            onTap: () => _showEarthquakeDetails(eq, l, isDark),
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 12, left: 16, right: 16),
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.white.withOpacity(0.05)),
+              ),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      width: 50, height: 50,
-                      decoration: BoxDecoration(color: color.withValues(alpha: 0.15), shape: BoxShape.circle, border: Border.all(color: color.withValues(alpha: 0.4), width: 2)),
-                      child: Center(child: Text(eq.mag.toStringAsFixed(1), style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 18))),
-                    ),
-                    const SizedBox(width: 16),
+                    Container(width: 4, color: color),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15, color: _onSurface), maxLines: 2, overflow: TextOverflow.ellipsis),
-                          const SizedBox(height: 6),
-                          Text("${DateFormat('dd.MM.yyyy HH:mm').format(eq.date)} • ${(eq.distance / 1000).toStringAsFixed(1)} km", style: TextStyle(color: _onSurfaceVariant, fontSize: 13)),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, 
+                                       style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17, color: _onSurface), 
+                                       maxLines: 2, overflow: TextOverflow.ellipsis),
+                                  const SizedBox(height: 8),
+                                  Text(" •  km", 
+                                       style: TextStyle(color: _onSurfaceVariant, fontSize: 13, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(eq.mag.toStringAsFixed(1), style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 32, letterSpacing: -1, height: 1.1)),
+                                Text(" km", style: TextStyle(color: _outline, fontSize: 12, fontWeight: FontWeight.w600)),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("${eq.depth.toStringAsFixed(1)} km ${l.depth}", style: TextStyle(color: _outline, fontSize: 12)),
-                    TextButton.icon(
-                      onPressed: () => _showEarthquakeDetails(eq, l, isDark),
-                      icon: const Icon(Icons.open_in_new, size: 16),
-                      label: Text(l.localeName == 'tr' ? 'Detay' : 'Detail'),
-                      style: TextButton.styleFrom(iconColor: _primaryContainer, foregroundColor: _primaryContainer),
-                    ),
-                  ],
-                )
-              ],
+              ),
             ),
           ),
-        ),
-      );
-      
-      // Her depremden sonra reklam ekle
-      items.add(NativeAdCard(key: ValueKey('ad_eq_$i')));
-    }
-    return items;
+        );
+        items.add(NativeAdCard(key: ValueKey('ad_eq_')));
+      }
+      return items;
   }
-
   List<Widget> _buildNewsListItems(AppLocalizations l, bool isDark, Color cardColor) {
     if (_newsList.isEmpty && !_isLoading) {
       return [Padding(padding: const EdgeInsets.all(32), child: Center(child: Text(l.noData, style: TextStyle(color: _onSurfaceVariant))))];
