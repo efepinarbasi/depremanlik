@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -240,26 +242,27 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     _fetchData();
   }
 
-  // Stitch "Seismic Elite" Glassmorphism Design Tokens
-  static const Color _bgColor = Color(0xFF131313);
-  static const Color _surfaceColor = Color(0xFF202020);
-  static const Color _surfaceHigh = Color(0xFF2a2a2a);
-  static const Color _surfaceHighest = Color(0xFF353535);
-  static const Color _surfaceBright = Color(0xFF393939);
-  static const Color _onSurface = Color(0xFFE5E2E1);
-  static const Color _onSurfaceVariant = Color(0xFFE7BCB8);
-  static const Color _primary = Color(0xFFFFB4AB);
-  static const Color _primaryContainer = Color(0xFFFF544B);
-  static const Color _secondary = Color(0xFFFFB77D);
-  static const Color _secondaryContainer = Color(0xFFFD8B00);
-  static const Color _tertiary = Color(0xFF2AE500);
-  static const Color _outline = Color(0xFFAE8883);
-  static const Color _outlineVariant = Color(0xFF5E3F3C);
+  // iOS Cupertino Design Tokens
+  static const Color _bgColor = Color(0xFF0B1326);
+  static const Color _surfaceColor = Color(0xFF131B2E);
+  static const Color _surfaceHigh = Color(0xFF222A3D);
+  static const Color _surfaceHighest = Color(0xFF2D3449);
+  static const Color _surfaceBright = Color(0xFF31394D);
+  static const Color _onSurface = Color(0xFFDAE2FD);
+  static const Color _onSurfaceVariant = Color(0xFFC4C7C8);
+  static const Color _primary = Color(0xFFFFFFFF);
+  static const Color _primaryContainer = Color(0xFFC5C7C8);
+  static const Color _secondary = Color(0xFFB7C8E1);
+  static const Color _secondaryContainer = Color(0xFF3A4A5F);
+  static const Color _tertiary = Color(0xFFFFFFFF);
+  static const Color _outline = Color(0xFF8E9193);
+  static const Color _outlineVariant = Color(0xFF444749);
 
   Color _getMagnitudeColor(double mag) {
-    if (mag < 4.0) return const Color(0xFFD97706); // Muted Amber
-    if (mag < 5.0) return const Color(0xFFE2725B); // Soft Terracotta
-    return const Color(0xFF93000A); // Deep Crimson
+    if (mag >= 6.0) return const Color(0xFF93000A); // error-container
+    if (mag >= 5.0) return const Color(0xFFFFFFFF); // tertiary
+    if (mag >= 4.0) return const Color(0xFFD3E4FE); // secondary-fixed
+    return const Color(0xFFB7C8E1); // secondary-fixed-dim
   }
 
   @override
@@ -276,13 +279,13 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     
     final Color bgColor = isDark ? _bgColor : const Color(0xFFF8F9FA);
     final Color cardColor = isDark ? _surfaceHigh : const Color(0xFFFFFFFF);
-    final Color navColor = isDark ? const Color(0xFF0E0E0E) : const Color(0xFFF3F4F5);
+    final Color navColor = isDark ? const Color(0xFFF2F2F7) : const Color(0xFFF3F4F5);
 
     return Scaffold(
       backgroundColor: _bgColor,
       appBar: _selectedIndex == 0 ? null : AppBar(
-        title: Text('SeismoAlert', style: TextStyle(fontWeight: FontWeight.w900, color: _onSurface, letterSpacing: -0.5, fontFamily: 'Inter')),
-        centerTitle: false,
+        title: Text('SeismoAlert', style: TextStyle(fontWeight: FontWeight.w600, color: _onSurface, letterSpacing: -0.5, fontFamily: '.SF Pro Display')),
+        centerTitle: true,
         backgroundColor: _bgColor,
         elevation: 0,
         actions: [
@@ -297,23 +300,29 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           navigationBarTheme: NavigationBarThemeData(
             labelTextStyle: WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.selected)) {
-                return TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: _primary, fontFamily: 'Inter');
+                return TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: _primary, fontFamily: '.SF Pro Display');
               }
-              return TextStyle(fontSize: 12, color: _onSurfaceVariant.withValues(alpha: 0.6), fontFamily: 'Inter');
+              return TextStyle(fontSize: 12, color: _onSurfaceVariant.withValues(alpha: 0.6), fontFamily: '.SF Pro Display');
             }),
           ),
         ),
-        child: NavigationBar(
-          selectedIndex: _selectedIndex,
-          onDestinationSelected: (idx) => setState(() => _selectedIndex = idx),
-          backgroundColor: const Color(0xFF0E0E0E),
-          indicatorColor: _primaryContainer.withValues(alpha: 0.2),
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.map_outlined, color: _onSurfaceVariant.withValues(alpha: 0.5)), selectedIcon: Icon(Icons.map, color: _primaryContainer), label: l.mapTab),
-            NavigationDestination(icon: Icon(Icons.list_alt_outlined, color: _onSurfaceVariant.withValues(alpha: 0.5)), selectedIcon: Icon(Icons.list_alt, color: _primaryContainer), label: l.activityTab),
-            NavigationDestination(icon: Icon(Icons.menu_book_outlined, color: _onSurfaceVariant.withValues(alpha: 0.5)), selectedIcon: Icon(Icons.menu_book, color: _primaryContainer), label: l.localeName == 'tr' ? 'Rehber' : 'Guide'),
-            NavigationDestination(icon: Icon(Icons.settings_outlined, color: _onSurfaceVariant.withValues(alpha: 0.5)), selectedIcon: Icon(Icons.settings, color: _primaryContainer), label: l.settingsTab),
-          ],
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: CupertinoTabBar(
+              currentIndex: _selectedIndex,
+              onTap: (idx) => setState(() => _selectedIndex = idx),
+              backgroundColor: Colors.white.withOpacity(0.8),
+              activeColor: _primary,
+              inactiveColor: const Color(0xFF999999),
+              items: [
+                BottomNavigationBarItem(icon: const Icon(CupertinoIcons.map), activeIcon: const Icon(CupertinoIcons.map_fill), label: l.mapTab),
+                BottomNavigationBarItem(icon: const Icon(CupertinoIcons.list_bullet), activeIcon: const Icon(CupertinoIcons.list_bullet), label: l.activityTab),
+                BottomNavigationBarItem(icon: const Icon(CupertinoIcons.book), activeIcon: const Icon(CupertinoIcons.book_fill), label: l.localeName == 'tr' ? 'Rehber' : 'Guide'),
+                BottomNavigationBarItem(icon: const Icon(CupertinoIcons.settings), activeIcon: const Icon(CupertinoIcons.settings_solid), label: l.settingsTab),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -382,7 +391,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       padding: const EdgeInsets.all(16),
       children: [
         // EMERGENCY TOOLS START
-        Text(l.localeName == 'tr' ? 'Acil Durum Araçları' : 'Emergency Tools', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF191C1D), letterSpacing: -0.01)),
+        Text(l.localeName == 'tr' ? 'Acil Durum Araçları' : 'Emergency Tools', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF000000), letterSpacing: -0.01)),
         const SizedBox(height: 16),
         Row(
           children: [
@@ -409,7 +418,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         // EMERGENCY TOOLS END
 
         // === QUICK ACCESS TOOLS GRID (FROM STITCH) ===
-        Text(l.localeName == 'tr' ? 'Hızlı Erişim' : 'Quick Access', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF191C1D), letterSpacing: -0.01)),
+        Text(l.localeName == 'tr' ? 'Hızlı Erişim' : 'Quick Access', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF000000), letterSpacing: -0.01)),
         const SizedBox(height: 4),
         Text(l.localeName == 'tr' ? 'Acil durum araçlarına hızlıca ulaşın.' : 'Quickly access emergency tools.', style: TextStyle(color: isDark ? _onSurfaceVariant : const Color(0xFF45474D), fontSize: 13)),
         const SizedBox(height: 16),
@@ -430,7 +439,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         const SizedBox(height: 32),
 
         // === EARTHQUAKE SIMULATOR (FROM STITCH) ===
-        Text(l.localeName == 'tr' ? 'Deprem Simülatörü' : 'Earthquake Simulator', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF191C1D), letterSpacing: -0.01)),
+        Text(l.localeName == 'tr' ? 'Deprem Simülatörü' : 'Earthquake Simulator', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF000000), letterSpacing: -0.01)),
         const SizedBox(height: 4),
         Text(l.localeName == 'tr' ? 'Sarsıntı şiddetini test edin ve güvenlik protokollerini öğrenin.' : 'Test earthquake intensity and learn safety protocols.', style: TextStyle(color: isDark ? _onSurfaceVariant : const Color(0xFF45474D), fontSize: 13)),
         const SizedBox(height: 16),
@@ -438,8 +447,8 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: cardColor,
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.05), blurRadius: 40, spreadRadius: -10, offset: const Offset(0, 8))],
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 10, offset: const Offset(0, 2))],
           ),
           child: Column(
             children: [
@@ -450,26 +459,21 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                   shape: BoxShape.circle,
                   color: _getMagnitudeColor(_simulatorMagnitude).withValues(alpha: 0.15),
                   border: Border.all(color: _getMagnitudeColor(_simulatorMagnitude), width: 3),
-                  boxShadow: [BoxShadow(color: _getMagnitudeColor(_simulatorMagnitude).withValues(alpha: 0.3), blurRadius: 20, spreadRadius: 2)],
+                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 10, offset: const Offset(0, 2))],
                 ),
                 child: Center(
                   child: Text(
                     _simulatorMagnitude.toStringAsFixed(1),
-                    style: TextStyle(color: _getMagnitudeColor(_simulatorMagnitude), fontWeight: FontWeight.w900, fontSize: 32, letterSpacing: -0.02),
+                    style: TextStyle(color: _getMagnitudeColor(_simulatorMagnitude), fontWeight: FontWeight.w600, fontSize: 32, letterSpacing: -0.02),
                   ),
                 ),
               ),
               const SizedBox(height: 16),
-              Text("M ${_simulatorMagnitude.toStringAsFixed(1)} - ${_getSimulatorLabel(l)}", style: TextStyle(color: isDark ? _onSurface : const Color(0xFF191C1D), fontWeight: FontWeight.bold, fontSize: 18)),
+              Text("M ${_simulatorMagnitude.toStringAsFixed(1)} - ${_getSimulatorLabel(l)}", style: TextStyle(color: isDark ? _onSurface : const Color(0xFF000000), fontWeight: FontWeight.bold, fontSize: 18)),
               const SizedBox(height: 8),
               Text(_getSimulatorDescription(l), textAlign: TextAlign.center, style: TextStyle(color: isDark ? _onSurfaceVariant : const Color(0xFF45474D), fontSize: 13, height: 1.5)),
               const SizedBox(height: 16),
-              Slider(
-                value: _simulatorMagnitude,
-                min: 2.0, max: 9.0, divisions: 14,
-                activeColor: _getMagnitudeColor(_simulatorMagnitude),
-                inactiveColor: isDark ? _surfaceBright : const Color(0xFFE7E8E9),
-                onChanged: (val) => setState(() => _simulatorMagnitude = val),
+              CupertinoSlider(value: _simulatorMagnitude, min: 2.0, max: 9.0, divisions: 14, activeColor: _getMagnitudeColor(_simulatorMagnitude), onChanged: (val) => setState(() => _simulatorMagnitude = val),
               ),
               const SizedBox(height: 16),
               // Safety protocols
@@ -487,7 +491,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         const SizedBox(height: 32),
 
         // === EMERGENCY KIT CHECKLIST (FROM STITCH) ===
-        Text(l.localeName == 'tr' ? 'Acil Durum Çantası' : 'Emergency Kit', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF191C1D), letterSpacing: -0.01)),
+        Text(l.localeName == 'tr' ? 'Acil Durum Çantası' : 'Emergency Kit', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF000000), letterSpacing: -0.01)),
         const SizedBox(height: 4),
         Text(l.localeName == 'tr' ? 'Afet sonrası hayatta kalmak için çantanızı hazırlayın.' : 'Prepare your bag to survive after a disaster.', style: TextStyle(color: isDark ? _onSurfaceVariant : const Color(0xFF45474D), fontSize: 13)),
         const SizedBox(height: 12),
@@ -496,7 +500,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: cardColor,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -504,8 +508,8 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${_kitItems.values.where((v) => v).length} / ${_kitItems.length} ${l.localeName == 'tr' ? 'Hazır' : 'Ready'}", style: TextStyle(color: isDark ? _onSurface : const Color(0xFF191C1D), fontWeight: FontWeight.bold, fontSize: 16)),
-                  Text("${((_kitItems.values.where((v) => v).length / _kitItems.length) * 100).toStringAsFixed(0)}%", style: TextStyle(color: _tertiary, fontWeight: FontWeight.w900, fontSize: 16)),
+                  Text("${_kitItems.values.where((v) => v).length} / ${_kitItems.length} ${l.localeName == 'tr' ? 'Hazır' : 'Ready'}", style: TextStyle(color: isDark ? _onSurface : const Color(0xFF000000), fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text("${((_kitItems.values.where((v) => v).length / _kitItems.length) * 100).toStringAsFixed(0)}%", style: TextStyle(color: _tertiary, fontWeight: FontWeight.w600, fontSize: 16)),
                 ],
               ),
               const SizedBox(height: 12),
@@ -532,7 +536,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
             value: entry.value,
             onChanged: (val) { setState(() => _kitItems[entry.key] = val ?? false); _saveSettings(); },
             title: Text(_getKitItemLabel(entry.key, l), style: TextStyle(
-              color: entry.value ? (isDark ? _onSurfaceVariant : const Color(0xFF45474D)) : (isDark ? _onSurface : const Color(0xFF191C1D)),
+              color: entry.value ? (isDark ? _onSurfaceVariant : const Color(0xFF45474D)) : (isDark ? _onSurface : const Color(0xFF000000)),
               fontWeight: entry.value ? FontWeight.normal : FontWeight.w600,
               decoration: entry.value ? TextDecoration.lineThrough : null,
               fontSize: 14,
@@ -547,7 +551,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         const SizedBox(height: 32),
 
         // === SURVIVAL GUIDE (ORIGINAL) ===
-        Text(l.guideTitle ?? "Emergency Survival Guide", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF191C1D), letterSpacing: -0.01)),
+        Text(l.guideTitle ?? "Emergency Survival Guide", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF000000), letterSpacing: -0.01)),
         const SizedBox(height: 16),
         _buildGuideCard(cardColor, isDark, l.guide1Title ?? "1. DROP, COVER, HOLD ON", l.guide1Desc ?? "...", Icons.accessibility_new),
         _buildGuideCard(cardColor, isDark, l.guide2Title ?? "2. STAY INDOORS", l.guide2Desc ?? "...", Icons.house),
@@ -565,7 +569,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           color: cardColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: accentColor.withValues(alpha: 0.2)),
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.04), blurRadius: 20, spreadRadius: -5)],
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 10, offset: const Offset(0, 2))],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -579,7 +583,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
               child: Icon(icon, color: accentColor, size: 24),
             ),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: TextStyle(color: isDark ? _onSurface : const Color(0xFF191C1D), fontWeight: FontWeight.w600, fontSize: 11, height: 1.2)),
+            Text(label, textAlign: TextAlign.center, style: TextStyle(color: isDark ? _onSurface : const Color(0xFF000000), fontWeight: FontWeight.w600, fontSize: 11, height: 1.2)),
           ],
         ),
       ),
@@ -613,7 +617,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                 child: Icon(icon, color: accentColor, size: 36),
               ),
               const SizedBox(height: 12),
-              Text(title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: _onSurface)),
+              Text(title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: _onSurface)),
               const SizedBox(height: 20),
               Expanded(
                 child: ListView(
@@ -643,7 +647,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         ..._contactControllers.asMap().entries.where((e) => e.value.text.isNotEmpty).map((e) => Container(
           margin: const EdgeInsets.only(bottom: 8),
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(10)),
           child: Row(children: [
             Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: _tertiary.withValues(alpha: 0.15), shape: BoxShape.circle), child: Icon(Icons.person, color: _tertiary, size: 20)),
             const SizedBox(width: 12),
@@ -668,7 +672,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         const SizedBox(height: 16),
         Container(
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: _secondaryContainer.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: _secondaryContainer.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(10)),
           child: Row(children: [
             Icon(Icons.info, color: _secondaryContainer),
             const SizedBox(width: 12),
@@ -702,7 +706,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         const SizedBox(height: 12),
         Container(
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(10)),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(l.localeName == 'tr' ? 'Önbellek Durumu' : 'Cache Status', style: TextStyle(color: _onSurface, fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 8),
@@ -720,7 +724,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     final c = color ?? _primary;
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: c.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(10)),
       child: Row(children: [
         Icon(icon, color: c, size: 28),
         const SizedBox(width: 12),
@@ -733,7 +737,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(10)),
       child: Row(children: [
         Icon(icon, color: _onSurfaceVariant, size: 22),
         const SizedBox(width: 12),
@@ -759,7 +763,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(10)),
       child: Row(children: [
         Icon(icon, color: _onSurfaceVariant, size: 22),
         const SizedBox(width: 12),
@@ -781,7 +785,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(color: _surfaceHighest, borderRadius: BorderRadius.circular(10)),
         child: Row(children: [
           Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: _primaryContainer.withValues(alpha: 0.15), shape: BoxShape.circle), child: Icon(Icons.favorite, color: _primaryContainer, size: 20)),
           const SizedBox(width: 12),
@@ -807,7 +811,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           child: Icon(icon, color: _primaryContainer, size: 28),
         ),
         const SizedBox(height: 8),
-        Text(label, style: TextStyle(color: isDark ? _onSurface : const Color(0xFF191C1D), fontWeight: FontWeight.w900, fontSize: 12, letterSpacing: 0.1)),
+        Text(label, style: TextStyle(color: isDark ? _onSurface : const Color(0xFF000000), fontWeight: FontWeight.w600, fontSize: 12, letterSpacing: 0.1)),
       ],
     );
   }
@@ -841,7 +845,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(color: color.withValues(alpha: 0.4), blurRadius: 15, offset: const Offset(0, 8))],
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 10, offset: const Offset(0, 2))],
         ),
         child: Column(
           children: [
@@ -909,7 +913,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(10)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -929,7 +933,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
   }
 
   Widget _buildSettingsTab(AppLocalizations l, bool isDark, Color cardColor) {
-    final textColor = isDark ? _onSurface : const Color(0xFF191C1D);
+    final textColor = isDark ? _onSurface : const Color(0xFF000000);
     final subColor = isDark ? _onSurfaceVariant : const Color(0xFF45474D);
 
     return ListView(
@@ -1049,9 +1053,9 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
         Text(l.languageSettings ?? "Language Settings", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor)),
         const SizedBox(height: 16),
         Container(
-          decoration: BoxDecoration(color: cardColor, borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: cardColor, borderRadius: BorderRadius.circular(10)),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             child: ExpansionTile(
               title: Text(l.localeName == 'tr' ? 'Uygulama Dilini Seç' : 'Select App Language', style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
               leading: Icon(Icons.language, color: isDark ? _primary : const Color(0xFF2D0003)),
@@ -1086,7 +1090,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       if (!mounted) return;
       showModalBottomSheet(
         context: context,
-        backgroundColor: isDark ? const Color(0xFF191C1D) : Colors.white,
+        backgroundColor: isDark ? const Color(0xFF000000) : Colors.white,
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
         builder: (context) {
           return Column(
@@ -1150,7 +1154,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
             Expanded(
               child: AnimatedDefaultTextStyle(
                 duration: const Duration(milliseconds: 300),
-                style: TextStyle(fontSize: 16, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, color: isDark ? Colors.white : const Color(0xFF191C1D), fontFamily: 'Roboto'),
+                style: TextStyle(fontSize: 16, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, color: isDark ? Colors.white : const Color(0xFF000000), fontFamily: 'Roboto'),
                 child: Text(name),
               ),
             ),
@@ -1174,8 +1178,8 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: isAreaSafe ? cardColor : _primaryContainer.withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 40, spreadRadius: -10, offset: const Offset(0, 10))]
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 10, offset: const Offset(0, 2))]
           ),
           child: Row(
             children: [
@@ -1185,7 +1189,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(isAreaSafe ? (l.areaSafe ?? "Area Safe") : (l.seismicAlert ?? "Seismic Alert"), style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF191C1D))),
+                    Text(isAreaSafe ? (l.areaSafe ?? "Area Safe") : (l.seismicAlert ?? "Seismic Alert"), style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: isDark ? _onSurface : const Color(0xFF000000))),
                     const SizedBox(height: 4),
                     Text(isAreaSafe ? (l.noSeismicActivity ?? "Safe") : (l.significantActivity ?? "Alert"), style: TextStyle(fontSize: 14, color: isDark ? _onSurfaceVariant : const Color(0xFF45474D), height: 1.4)),
                   ],
@@ -1369,7 +1373,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(l.localeName == 'tr' ? 'Kayıtlı Adresler' : 'Saved Addresses', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: isDark ? Colors.white70 : const Color(0xFF191C1D))),
+                  child: Text(l.localeName == 'tr' ? 'Kayıtlı Adresler' : 'Saved Addresses', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: isDark ? Colors.white70 : const Color(0xFF000000))),
                 ),
                 const SizedBox(height: 8),
                 SizedBox(
@@ -1410,7 +1414,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                               AnimatedDefaultTextStyle(
                                 duration: const Duration(milliseconds: 300),
                                 style: TextStyle(
-                                  color: isSelected ? Colors.white : (isDark ? Colors.white : const Color(0xFF191C1D)),
+                                  color: isSelected ? Colors.white : (isDark ? Colors.white : const Color(0xFF000000)),
                                   fontWeight: isSelected ? FontWeight.w900 : FontWeight.bold,
                                   fontFamily: 'Roboto',
                                   fontSize: 14,
@@ -1465,14 +1469,14 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     final shadow = isDark ? Colors.black45 : Colors.black12;
     return InkWell(
       onTap: () => _onCategoryChanged(type),
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(12),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOutCubic,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           color: bg,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(color: isSelected ? Colors.transparent : (isDark ? Colors.transparent : const Color(0xFFE7E8E9))),
           boxShadow: isSelected ? [] : [BoxShadow(color: shadow, blurRadius: 10, offset: const Offset(0, 4))],
         ),
@@ -1492,7 +1496,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       builder: (context) {
         return Container(
           padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(color: isDark ? const Color(0xFF191C1D) : Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(32))),
+          decoration: BoxDecoration(color: isDark ? const Color(0xFF000000) : Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(32))),
           child: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -1506,14 +1510,14 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
                     Container(
                       width: 60, height: 60,
                       decoration: BoxDecoration(color: _getMagnitudeColor(eq.mag).withValues(alpha: 0.1), shape: BoxShape.circle),
-                      child: Center(child: Text(eq.mag.toStringAsFixed(1), style: TextStyle(color: _getMagnitudeColor(eq.mag), fontWeight: FontWeight.w900, fontSize: 22))),
+                      child: Center(child: Text(eq.mag.toStringAsFixed(1), style: TextStyle(color: _getMagnitudeColor(eq.mag), fontWeight: FontWeight.w600, fontSize: 22))),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF191C1D)), maxLines: 2),
+                          Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF000000)), maxLines: 2),
                           const SizedBox(height: 4),
                           Text(DateFormat('dd.MM.yyyy - HH:mm:ss').format(eq.date), style: TextStyle(color: isDark ? const Color(0xFFC5C6CD) : const Color(0xFF45474D), fontSize: 14)),
                         ],
@@ -1544,7 +1548,7 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
       children: [
         Icon(icon, color: isDark ? const Color(0xFFC5C6CD) : const Color(0xFF45474D)),
         const SizedBox(height: 8),
-        Text(val, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: isDark ? Colors.white : const Color(0xFF191C1D))),
+        Text(val, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: isDark ? Colors.white : const Color(0xFF000000))),
         const SizedBox(height: 2),
         Text(label, style: TextStyle(color: isDark ? const Color(0xFFC5C6CD) : const Color(0xFF45474D), fontSize: 12)),
       ],
@@ -1558,78 +1562,151 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
     final List<Widget> items = [];
     for (int i = 0; i < _earthquakes.length; i++) {
         final eq = _earthquakes[i];
-        final color = _getMagnitudeColor(eq.mag);
+        
+        Color magColor;
+        if (eq.mag >= 6.0) magColor = const Color(0xFFFFB4AB); // error
+        else if (eq.mag >= 5.0) magColor = const Color(0xFFFFFFFF); // tertiary
+        else if (eq.mag >= 4.0) magColor = const Color(0xFFD3E4FE); // secondary-fixed
+        else magColor = const Color(0xFFB7C8E1); // secondary-fixed-dim
+
+        final timeDiff = DateTime.now().difference(eq.date);
+        String timeAgo = '';
+        if (timeDiff.inMinutes < 60) timeAgo = '${timeDiff.inMinutes} mins ago';
+        else if (timeDiff.inHours < 24) timeAgo = '${timeDiff.inHours} hours ago';
+        else timeAgo = '${timeDiff.inDays} days ago';
+        
+        final dist = eq.distance != null ? '${eq.distance!.toStringAsFixed(0)}KM' : 'N/A';
         
         items.add(
           GestureDetector(
-            key: ValueKey('eq__'),
+            key: ValueKey('eq_$i'),
             onTap: () => _showEarthquakeDetails(eq, l, isDark),
             child: Container(
               margin: const EdgeInsets.only(bottom: 12, left: 16, right: 16),
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                color: cardColor,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.white.withOpacity(0.05)),
+                color: const Color(0xFF171F33), // surface-container
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
               ),
-              child: IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(width: 4, color: color),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
+                children: [
+                  // Left bar indicator
+                  Positioned(
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: 4,
+                    child: Container(color: magColor),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 16, 16),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16, // headline-md-mobile like
+                                  color: Color(0xFFDAE2FD), // on-surface
+                                  fontFamily: 'Inter',
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                timeAgo,
+                                style: const TextStyle(
+                                  color: Color(0xFFC4C7C8), // on-surface-variant
+                                  fontSize: 15, // body-md
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Row(
                                 children: [
-                                  Text(eq.title == 'Bilinmeyen Konum' ? (l.localeName == 'tr' ? 'Bilinmeyen Konum' : 'Unknown Location') : eq.title, 
-                                       style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17, color: _onSurface), 
-                                       maxLines: 2, overflow: TextOverflow.ellipsis),
-                                  const SizedBox(height: 8),
-                                  Text(" •  km", 
-                                       style: TextStyle(color: _onSurfaceVariant, fontSize: 13, fontWeight: FontWeight.w600)),
+                                  Text(
+                                    "DEPTH: ${eq.depth.toStringAsFixed(0)}KM",
+                                    style: const TextStyle(
+                                      color: Color(0xFFC4C7C8),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 0.05,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Text(
+                                    "DIST: $dist",
+                                    style: const TextStyle(
+                                      color: Color(0xFFC4C7C8),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 0.05,
+                                    ),
+                                  ),
                                 ],
                               ),
-                            ),
-                            const SizedBox(width: 16),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(eq.mag.toStringAsFixed(1), style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 32, letterSpacing: -1, height: 1.1)),
-                                Text(" km", style: TextStyle(color: _outline, fontSize: 12, fontWeight: FontWeight.w600)),
-                              ],
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: magColor.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(9999),
+                                border: Border.all(color: magColor.withValues(alpha: 0.2)),
+                              ),
+                              child: Text(
+                                eq.mag.toStringAsFixed(1),
+                                style: TextStyle(
+                                  color: magColor,
+                                  fontSize: 24, // headline-lg-mobile
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
         );
-        items.add(NativeAdCard(key: ValueKey('ad_eq_')));
+        if (i > 0 && i % 3 == 0) { // added condition to reduce ads spam
+           items.add(NativeAdCard(key: ValueKey('ad_eq_$i')));
+        }
       }
       return items;
   }
   List<Widget> _buildNewsListItems(AppLocalizations l, bool isDark, Color cardColor) {
     if (_newsList.isEmpty && !_isLoading) {
-      return [Padding(padding: const EdgeInsets.all(32), child: Center(child: Text(l.noData, style: TextStyle(color: _onSurfaceVariant))))];
+      return [Padding(padding: const EdgeInsets.all(32), child: Center(child: Text(l.noData, style: TextStyle(color: Color(0xFFC4C7C8)))))];
     }
 
     final List<Widget> items = [];
 
     for (int i = 0; i < _newsList.length; i++) {
       final news = _newsList[i];
+      final timeDiff = DateTime.now().difference(news.pubDate);
+      String timeAgo = '';
+      if (timeDiff.inMinutes < 60) timeAgo = '${timeDiff.inMinutes} mins ago';
+      else if (timeDiff.inHours < 24) timeAgo = '${timeDiff.inHours} hours ago';
+      else timeAgo = '${timeDiff.inDays} days ago';
 
-      // --- Haber Kartı ---
       items.add(
         GestureDetector(
           key: ValueKey('news_$i'),
@@ -1638,43 +1715,51 @@ class _StitchHomeScreenState extends State<StitchHomeScreen> with TickerProvider
             if (await canLaunchUrl(uri)) await launchUrl(uri, mode: LaunchMode.externalApplication);
           },
           child: Container(
-            margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+            margin: const EdgeInsets.only(bottom: 12, left: 16, right: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 30, spreadRadius: -8, offset: const Offset(0, 6))]
+              color: const Color(0xFF131B2E), // surface-container-low
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(color: _secondaryContainer.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
-                      child: Text(news.source == 'Haber' ? l.news : (news.source ?? l.news), style: TextStyle(color: _secondaryContainer, fontSize: 11, fontWeight: FontWeight.bold)),
-                    ),
-                    const Spacer(),
-                    Icon(Icons.open_in_new, color: _outline, size: 16),
-                  ],
+                const SizedBox(height: 8),
+                Text(
+                  news.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                    color: Color(0xFFDAE2FD),
+                    fontFamily: 'Inter',
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 10),
-                Text(news.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: _onSurface)),
-                const SizedBox(height: 8),
-                Text(news.description.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ''), style: TextStyle(color: _onSurfaceVariant, fontSize: 13, height: 1.4), maxLines: 3, overflow: TextOverflow.ellipsis),
-                const SizedBox(height: 8),
-                Text(DateFormat('dd MMM yyyy').format(news.pubDate), style: TextStyle(color: _outline, fontSize: 12)),
+                if (news.description != null && news.description!.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      news.description!,
+                      style: const TextStyle(
+                        color: Color(0xFFC4C7C8),
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
               ],
             ),
           ),
         ),
       );
-
-      // --- Native Reklam Kartı ---
-      items.add(NativeAdCard(key: ValueKey('ad_$i')));
+      if (i > 0 && i % 4 == 0) {
+         items.add(NativeAdCard(key: ValueKey('ad_news_$i')));
+      }
     }
-
     return items;
   }
 }
