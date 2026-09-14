@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
-import 'screens/stitch_home_screen.dart';
+import 'screens/stitch_exact_screen.dart';
 import 'services/notification_service.dart';
 import 'providers/locale_provider.dart';
 
@@ -51,7 +51,7 @@ class DepremAnlikApp extends StatelessWidget {
             ),
             navigationBarTheme: NavigationBarThemeData(
               backgroundColor: const Color(0xFF060E20),
-              indicatorColor: const Color(0xFFDAE2FD).withValues(alpha: 0.25),
+              indicatorColor: const Color(0xFFDAE2FD).withOpacity(0.25),
               labelTextStyle: WidgetStateProperty.all(const TextStyle(fontSize: 12, fontFamily: 'Inter')),
             ),
             sliderTheme: const SliderThemeData(
@@ -68,7 +68,7 @@ class DepremAnlikApp extends StatelessWidget {
               thumbColor: WidgetStateProperty.resolveWith((states) => 
                 states.contains(WidgetState.selected) ? const Color(0xFFDAE2FD) : const Color(0xFF222A3D)),
               trackColor: WidgetStateProperty.resolveWith((states) => 
-                states.contains(WidgetState.selected) ? const Color(0xFFDAE2FD).withValues(alpha: 0.4) : const Color(0xFF131B2E)),
+                states.contains(WidgetState.selected) ? const Color(0xFFDAE2FD).withOpacity(0.4) : const Color(0xFF131B2E)),
             ),
             colorScheme: const ColorScheme.dark(
               primary: Color(0xFFDAE2FD),
@@ -83,7 +83,7 @@ class DepremAnlikApp extends StatelessWidget {
               outlineVariant: Color(0xFF5E3F3C),
             ),
           ),
-          home: const StitchHomeScreen(),
+          home: const StitchExactScreen(),
         );
       },
     );

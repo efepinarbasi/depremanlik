@@ -52,6 +52,7 @@ dependencies:
   fast_contacts: ^5.0.1
   permission_handler: ^11.3.1
   google_mobile_ads: ^9.1.0
+  google_maps_flutter: ^2.18.0
 
 dev_dependencies:
   flutter_test:
